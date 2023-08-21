@@ -1,0 +1,488 @@
+body{
+    margin: 0;
+}
+
+ul {
+    list-style-type: none;      
+}
+
+#container {
+    width: 1300px;
+    height: 2000px;
+    --position: relative;
+    margin: 0 auto;
+    --padding-top:  60px;
+
+}
+
+
+
+
+
+/* ---------------------------------------------------- */
+/* 헤더영역 */
+header {
+    height: 60px;
+    width: 100%;
+    background-color: white;
+    /* 헤더 상단고정 */
+    position:sticky;
+    top: 0;     
+    z-index: 100;
+}
+
+/* 헤더로고영역 */
+    #headerLogo {
+        height: 100%;
+        width: 15%;
+        float: left;
+    }
+
+    #headerLogo img {
+        width: 100%;
+        height: 100%;
+    }
+/* ---------------------------------------------------- */
+/* 헤더아이템영역 */
+    #headeritem {
+        height: 100%;
+        width: 30%;
+        --background-color: blueviolet;
+        float: left
+    }
+     /* 헤더아이템영역-검색창 */
+        #headerSearch {
+            height: 100%;
+            width: 60%;
+            --background-color: antiquewhite;
+            position: relative;
+            float: left;
+        }
+        
+            /* 헤더아이템영역-검색창-아이콘 */
+            #searchButton{
+                width: 5%;
+                height: 15px;
+                position: absolute;
+                top: 41%;
+                right: 10%;
+            }
+            /* 헤더아이템영역-검색창-텍스트박스 */
+            #searchText1{
+                width: 50%;
+                height: 22px;
+                margin-top: 8%;
+                margin-left: 40%;
+
+            }
+
+        /* 헤더아이템영역-로그인창 */     
+        #headerLogin {
+            height: 100%;
+            width: 20%;
+            --background-color: blue;
+            float: left;
+            
+        }
+        /* 헤더아이템영역-로그인버튼 속성 */
+
+            /* 로그인 버튼 */
+            #btnLogin{
+                width: 70%;
+                height: 32px;
+                margin: 0px;
+                background-color: rgb(255, 255, 255);
+                border-radius: 10%;
+                border: 2px solid #ccc;
+                margin: 15px 10px;
+            }
+            
+            /* 로그인버튼 a태그 */
+            #a_btnLogin{
+                color: rgb(96, 81, 81);
+                text-decoration: none;
+                font-weight: bolder;
+                font-size: 0.8em;
+            }
+            
+    /* 헤더아이템영역-프로필 */
+        #headerProfile{
+            height: 100%;
+            width: 20%;
+            --background-color: brown;
+            float: left;
+            
+        }
+        /* 헤더아이템영역-프로필아이콘 */
+            #headerProfile>ul {
+                padding: 0;
+                margin: 0;
+            }
+
+            #headerProfile>ul>li{
+                font-size: 10px;
+                width: 100px
+            }
+            /* 드롭메뉴 */
+            #headerProfile>ul>li>div{
+                width: 150px;
+                height: 30px;
+                background-color: white;
+                padding: 5px;
+            }
+
+            #loginDiv {
+                display: none;
+            }
+
+            
+            #profileIcon {
+                width: 50%;
+                height: 40px;
+                margin: 10px 20px;
+            }
+
+            
+/* ---------------------------------------------------- */
+/* 네비영역 */
+    #headerNav {
+        height: 100%;
+        width: 55%;
+        float : left;
+
+    }
+    
+    /* 네비 글자 크기 */
+    #headerNav>ul>li{
+        font-size: 20px;
+        width: 100px;
+        float: left;  
+        padding-top: 0px;
+        padding-left: 5px;
+        font-weight: bolder;
+        margin-bottom: 20px;
+
+    }
+    
+    nav a {
+        text-decoration: none;
+        color: black;
+    }
+    nav a:hover {
+        color: rgb(88, 160, 255);
+    }
+    
+    /* 드롭다운 메뉴 위치  */
+        .navMenu>li {
+            --float: left;
+        }
+
+        .navMenu li>ul {
+            background-color: white;
+            width: 90px;
+            
+            /* position: absolute;
+            left: 10px;
+            top: 40px;
+            padding: 0;
+            margin: 0; */
+        }
+
+        .navMenu li ul a {
+            color:rgb(45, 131, 244);
+        }
+
+        .navMenu li ul a:hover {
+            color:rgb(202, 224, 253);
+        }
+        
+        .navMenu li {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        .navMenu>li>div {
+            width: 100px;
+            height: 80px;
+            background-color: white;
+            display: none;
+        }
+
+        .navMenu>li>div>ul {
+            padding-left: 10px;
+        }
+
+        
+    /* 드롭다운 메뉴 가렸다가 hover시 보여줌 이때 list가 아닌 a에 hover를하면 메뉴가 안보임 */
+            .navMenu > li:hover div {
+                display: block;
+            }
+/* ---------------------------------------------------- */
+/* 메인영역 */
+main {
+    width: 100%;
+    height: 1840px;
+}
+
+main a{
+    color: #333;
+    text-decoration: none;
+}
+
+main a:hover{
+    color: skyblue;
+    text-decoration: none;
+}
+
+
+/* 메인 배너 영역 */
+#mainBanner {
+    position: relative;
+    height: 25%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slide {
+	display: flex;
+    transition: all 1s;
+    padding: 0;
+    margin: 0 auto;
+
+}
+
+.slide img {
+    width: 1300px;
+    height: 460px;
+}
+
+.prev-btn, .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+/* ---------------------------------------------------- */
+/* 메인 게시판 영역 */
+#mainBoard {
+    height: 20%;
+    width: 100%;
+    display: flex;
+    
+}
+/* 메인게시판 인기 게시물영역 */
+#popularPosts {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#popularPosts img {
+    width: 70px;
+    height: 70px;
+}
+
+.posts {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    padding: 20px;
+}
+
+.posts a {
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+.posts div{
+    margin: 5px;
+    font-size: 13px;
+}
+
+.rightDiv {
+    border-left: 2px solid #aeacac;
+    padding-left: 20px;
+}
+.leftDiv {
+    padding-right: 10px;
+}
+
+.heart {
+    color:pink;
+}
+/* ---------------------------------------------------- */
+/* 메인게시판 검색영역 */
+
+    #customSearch {
+        width: 100%;
+        background-color: #f5f5f5;
+        border: 1px solid #ddd;
+        padding: 20px;
+        max-width: 500px;
+        margin: 0 auto;
+        width: 100%;
+    }
+    
+    #mainSearch_header {
+        text-align: left;
+        margin-bottom: 20px;
+    }
+    
+    #mainSearch_search input[type="text"] {
+        width: 80%;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    #searchBox {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    #mainSearch_table {
+        margin-top: 20px;
+    }
+
+    #mainSearch_table td div img {
+        width: 100%;
+        height: 100%;
+    } 
+    
+    #mainSearch_table table {
+        width: 100%;
+    }
+    
+    #mainSearch_table td {
+        padding: 10px;
+        text-align: center;
+    }
+    
+    #mainSearch_table a {
+        text-decoration: none;
+        color: #333;
+    }
+    
+    #mainSearch_table a:hover {
+        color: #ff5722;
+    }
+    
+    #mainSearch_table div:nth-child(1) {
+        background-color: #ddd;
+        width: 50px;
+        height: 50px;
+        margin: 0 auto;
+        margin-bottom: 10px;
+    }
+
+/* 메인 판매 영역 */
+    #mainSale{
+        height: 55%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #mainSale>h2>span{
+        color: gold;
+    }
+    
+
+    .list-container{
+        height: 26%;
+        display: flex;
+        padding-left: 20px;
+
+    }
+    
+    .list{
+        width: 25%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 10px;
+    }
+    
+    .list-header {
+        display: flex;
+        align-items: flex-end
+    }
+    
+    .list-header>div {
+        margin-right: 5px;
+        width: 15%;  
+        height: 25px;
+        color: white;
+        font-size: 13px;
+        text-align: center;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+    }
+    .list>div {
+        height: 100%;
+        width: 100%;
+    }
+    
+    .purchaseOption1 {
+        background-color: rgb(255, 0, 0);
+    }
+    .purchaseOption2 {
+        background-color: rgba(39, 138, 252);
+    }
+    .purchaseOption2-1 {
+        background-color: rgb(98, 108, 119);
+    }
+    .purchaseOption1-2 {
+        background-color: rgb(83, 225, 196);;
+    }
+    .purchaseOption3 {
+        background-color: rgb(224, 128, 50);;
+    }
+    .purchaseOption4 {
+        background-color: rgb(69, 69, 69);;
+    }
+    
+    
+    
+    .list-img img {
+        width: 70%;
+        height: 160px;
+        border-radius: 5px;
+    }
+    
+    
+    .list-price {
+        color: rgb(68, 68, 68);
+    }
+    footer{
+        width: 100%;
+        height : 100px;
+    }
+    
+    
+
+
+/* 푸터영역 */
+    footer{
+        height : 100px;
+        width: 100%;
+    }
+

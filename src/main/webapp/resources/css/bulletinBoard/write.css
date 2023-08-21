@@ -1,0 +1,89 @@
+#container {
+    width: 1300px;
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+}
+.write-form {
+width: 80%;
+height: 90%;
+margin: 20px auto;
+padding: 20px;
+border: 1px solid #ccc;
+background-color: #f9f9f9;
+}
+
+.write-form label {
+display: block;
+margin-bottom: 10px;
+font-weight: bold;
+}
+
+.write-form input[type="text"], .write-form textarea {
+width: 100%;
+padding: 10px;
+margin-bottom: 10px;
+border: 1px solid #ccc;
+border-radius: 4px;
+resize: vertical;
+}
+
+.write-form button {
+padding: 10px 20px;
+background-color: rgb(97, 166, 240);
+color: #fff;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+}
+
+.btn {
+	padding: 10px 20px;
+	background-color: rgb(97, 166, 240);
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.write-form button:hover {
+background-color: #45a049;
+}
+
+.write-form input[type="text"]{
+    width: 90%;
+}
+
+.write-form textarea{
+    width: 90%;
+}
+
+.top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top img {
+    width: 70px;
+    height: 60px;
+}
+
+label {
+    margin-top: 20px;
+}
+
+#writer {
+    width: 150px;
+}
+
+#password{
+    width: 165px;
+    height: 30px;
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MemberMapper">
+	<resultMap type="kr.co.pdpdmall.member.domain.Member" id="memberResultMap">
+		<id property="memberId" column="MEMBER_ID" />
+		<result property="memberPw" column="MEMBER_PW" />
+		<result property="memberName" column="MEMBER_NAME" />
+		<result property="memberNickname" column="MEMBER_NICKNAME" />
+		<result property="memberPhone" column="MEMBER_PHONE" />
+		<result property="memberAddress" column="MEMBER_ADDRESS" />
+		<result property="memberPostCode" column="MEMBER_POSTCODE" />
+		<result property="memberDetailAddress" column="MEMBER_DETAILADDRESS" />
+		<result property="memberEmail" column="MEMBER_EMAIL" />
+		<result property="memberDate" column="MEMBER_DATE" />
+	</resultMap>
+	
+	<insert id="insertMember">
+		INSERT INTO MALLMEMBER_TBL VALUES(#{memberId},#{memberPw},#{memberName},#{memberNickname},#{memberPhone},#{memberAddress},#{memberPostCode},#{memberDetailAddress},#{memberEmail}, DEFAULT)
+	</insert>
+	
+	<update id="updateMember">
+ 		UPDATE MALLMEMBER_TBL SET MEMBER_PW=#{memberPw},MEMBER_NICKNAME=#{memberNickname} ,MEMBER_PHONE=#{memberPhone }, MEMBER_ADDRESS=#{memberAddress}, MEMBER_POSTCODE=#{memberPostCode}, MEMBER_DETAILADDRESS=#{memberDetailAddress}, MEMBER_EMAIL=#{memberEmail} WHERE MEMBER_ID=#{memberId}
+ 	</update>
+ 	
+ 	<delete id="deleteMember">
+ 		DELETE FROM MALLMEMBER_TBL WHERE MEMBER_ID = #{memberId}
+ 	</delete>
+ 	
+ 	<select id="selectCheckLogin" resultMap="memberResultMap">
+ 		SELECT * FROM MALLMEMBER_TBL WHERE MEMBER_ID=#{memberId} AND MEMBER_PW=#{memberPw}
+ 	</select>
+ 	
+ 	<select id="selectOneById" resultMap="memberResultMap">
+ 		SELECT * FROM MALLMEMBER_TBL WHERE MEMBER_ID=#{memberId}
+ 	</select>
+</mapper>

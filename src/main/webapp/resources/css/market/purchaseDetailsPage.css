@@ -1,0 +1,209 @@
+body{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#container {
+    width: 1300px;
+    height: 1200px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+main {
+    height: 1100px;
+    width: 100%;
+}
+
+button, img{
+    cursor: pointer;
+}
+
+#detailHeader {
+    height: 5%;
+    --background-color: bisque;
+}
+
+#detailMain {
+    height: 95%;
+    width: 100%;
+    --background-color: aqua;
+    display: flex;
+    flex-direction: row;
+}
+
+
+/* 메인 좌측 영역 */
+#mainLeft {
+    width: 60%;
+    height: 100%;
+    --background-color: blueviolet;
+    display: flex; 
+    flex-direction: column;  
+}
+
+#mainImg {
+    height: 40%;
+    width: 100%;
+    --background-color: azure;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#mainImg img{
+    width: 80%;
+    height: 100%;
+    transition: all 0.3s linear;
+    border-radius: 5px;
+}
+
+#mainImg:hover img{
+    transform: scale(1.3);
+}
+
+#subImg {
+    height: 20%;
+    width: 100%;
+    --background-color: bisque;
+    display: flex;
+    align-items: center;
+}
+
+.sub {
+    width: 20%;
+    height: 80%;
+    display: flex;
+    --background-color: tomato;
+    padding: 10px;
+}
+
+.sub img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+#details {
+    height: 40%;
+    width: 100%;
+}
+
+#detailText {
+    width: 90%;
+    height: 70%;
+    margin-left: 30px;
+    background-color: white;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 10px 15px;
+}
+
+/* 메인 우측영역 */
+
+#mainRight {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+#rating {
+    width: 100%;
+    height: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+#rating>div{
+    font-size: 30px;
+    width: 400px;
+    background-color: #eee;
+    text-align: center;
+}
+
+#rating span {
+    color: tomato;
+}
+
+.detailInfo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.infoBox {
+    width: 400px;
+    height: 150px;
+    border: 2px solid #ccc;
+    border-collapse: collapse;
+}
+
+.infoBox th, .infoBox td{
+    border: 1px solid #ccc
+}
+
+.infoBox th {
+    background-color: #eee;
+    width: 150px;
+}
+
+.infoBox td{
+    padding: 5px 15px;
+}
+
+#sallingPrice {
+    width: 100%;
+    height: 10%;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+#sallingPrice span{
+    font-size: 40px;
+    color: rgb(49, 149, 255);
+}
+
+.detailBox {
+    width: 380px;
+    border: 1px solid black;
+    margin: 5px;
+    padding: 10px;
+    font-size: 20px;
+    color: rgb(233, 147, 53);
+    display: flex;
+    justify-content: space-around;
+}
+
+#purchaseArea{
+    width: 100%;
+    height: 10%;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#purchaseArea button{       
+    width: 150px;
+    height: 60px;
+    background-color: rgb(49, 149, 255);
+    color: white;
+    font-size: 20px;
+    border-radius: 5px;
+    border: none;
+}
+
+
+#purchaseArea a {
+    color: white;
+    text-decoration: none;
+}
+
+
+
+

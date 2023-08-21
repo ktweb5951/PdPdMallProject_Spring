@@ -1,0 +1,326 @@
+#container {
+	width: 1300px;
+	height: 1000px;
+	margin: 0 auto;
+}
+
+/* ---------------------------------------------------- */
+/* 헤더영역 */
+header {
+    height: 60px;
+    width: 100%;
+    background-color: white;
+    /* 헤더 상단고정 */
+    position:sticky;
+    top: 0;     
+    z-index: 100;
+}
+
+/* 헤더로고영역 */
+    #headerLogo {
+        height: 100%;
+        width: 15%;
+        float: left;
+    }
+
+    #headerLogo img {
+        width: 100%;
+        height: 100%;
+    }
+/* ---------------------------------------------------- */
+/* 헤더아이템영역 */
+    #headeritem {
+        height: 100%;
+        width: 30%;
+        --background-color: blueviolet;
+        float: left
+    }
+     /* 헤더아이템영역-검색창 */
+        #headerSearch {
+            height: 100%;
+            width: 60%;
+            --background-color: antiquewhite;
+            position: relative;
+            float: left;
+        }
+        
+            /* 헤더아이템영역-검색창-아이콘 */
+            #searchButton{
+                width: 5%;
+                height: 15px;
+                position: absolute;
+                top: 41%;
+                right: 10%;
+            }
+            /* 헤더아이템영역-검색창-텍스트박스 */
+            #searchText1{
+                width: 50%;
+                height: 22px;
+                margin-top: 8%;
+                margin-left: 40%;
+
+            }
+
+        /* 헤더아이템영역-로그인창 */     
+        #headerLogin {
+            height: 100%;
+            width: 20%;
+            --background-color: blue;
+            float: left;
+            
+        }
+        /* 헤더아이템영역-로그인버튼 속성 */
+
+            /* 로그인 버튼 */
+            #btnLogin{
+                width: 70%;
+                height: 32px;
+                margin: 0px;
+                background-color: rgb(255, 255, 255);
+                border-radius: 10%;
+                border: 2px solid #ccc;
+                margin: 15px 10px;
+            }
+            
+            /* 로그인버튼 a태그 */
+            #a_btnLogin{
+                color: rgb(96, 81, 81);
+                text-decoration: none;
+                font-weight: bolder;
+                font-size: 0.8em;
+            }
+            
+    /* 헤더아이템영역-프로필 */
+        #headerProfile{
+            height: 100%;
+            width: 20%;
+            --background-color: brown;
+            float: left;
+            
+        }
+        /* 헤더아이템영역-프로필아이콘 */
+            #headerProfile>ul {
+                padding: 0;
+                margin: 0;
+            }
+
+            #headerProfile>ul>li{
+                font-size: 10px;
+                width: 100px
+            }
+            /* 드롭메뉴 */
+            #headerProfile>ul>li>div{
+                width: 150px;
+                height: 30px;
+                background-color: white;
+                padding: 5px;
+            }
+
+            #loginDiv {
+                display: none;
+            }
+
+            
+            #profileIcon {
+                width: 50%;
+                height: 40px;
+                margin: 10px 20px;
+            }
+
+            
+/* ---------------------------------------------------- */
+/* 네비영역 */
+    #headerNav {
+        height: 100%;
+        width: 55%;
+        float : left;
+
+    }
+    
+    /* 네비 글자 크기 */
+    #headerNav>ul>li{
+        font-size: 20px;
+        width: 100px;
+        float: left;  
+        padding-top: 0px;
+        padding-left: 5px;
+        font-weight: bolder;
+        margin-bottom: 20px;
+
+    }
+    
+    nav a {
+        text-decoration: none;
+        color: black;
+    }
+    nav a:hover {
+        color: rgb(88, 160, 255);
+    }
+    
+    /* 드롭다운 메뉴 위치  */
+        .navMenu>li {
+            --float: left;
+        }
+
+        .navMenu li>ul {
+            background-color: white;
+            width: 90px;
+            
+            /* position: absolute;
+            left: 10px;
+            top: 40px;
+            padding: 0;
+            margin: 0; */
+        }
+
+        .navMenu li ul a {
+            color:rgb(45, 131, 244);
+        }
+
+        .navMenu li ul a:hover {
+            color:rgb(202, 224, 253);
+        }
+        
+        .navMenu li {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        .navMenu>li>div {
+            width: 100px;
+            height: 80px;
+            background-color: white;
+            display: none;
+        }
+
+        .navMenu>li>div>ul {
+            padding-left: 10px;
+        }
+
+        
+    /* 드롭다운 메뉴 가렸다가 hover시 보여줌 이때 list가 아닌 a에 hover를하면 메뉴가 안보임 */
+            .navMenu > li:hover div {
+                display: block;
+            }
+
+main {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 14px;
+	
+}
+
+table {
+	border-collapse: collapse;
+	width: 800px;
+	margin-top: 20px;
+}
+
+th, td {
+	border: 1px solid #ddd;
+	padding: 10px;
+	text-align: center;
+}
+
+th {
+	background-color: #ccc;
+}
+
+tr:nth-child(even) {
+	background-color: #f9f9f9;
+}
+
+tr:hover {
+	background-color: #f5f5f5;
+}
+
+a {
+	text-decoration: none;
+	color: #333;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+#top {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#top img {
+	width: 50px;
+	height: 60px;
+}
+
+#top h1 {
+	color: #333;
+	font-weight: bolder;
+}
+
+#btnArea {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+}
+
+/* 버튼 스타일 */
+.write-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #CCC; /* 버튼 배경색 */
+  color: white; /* 텍스트 색상 */
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px; /* 버튼 테두리 둥글게 */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* 호버 효과를 위한 트랜지션 */
+}
+
+/* 호버 효과 */
+.write-btn:hover {
+  background-color: #0056b3; /* 호버 시 배경색 변경 */
+}
+
+/* 클릭 효과 */
+.write-btn:active {
+  background-color: #003d80; /* 클릭 시 배경색 변경 */
+}
+
+  #pageNavi {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #pageNavi a {
+    margin: 0 5px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 5px 10px;
+     z-index: 10;
+  }
+  #pageNavi .active {
+    background-color: #007bff;
+    color: white;
+  }
+
+/* 푸터영역 */
+    footer{
+        height : 100px;
+        width: 100%;
+        position: relative;
+        z-index: 9999;
+    }
