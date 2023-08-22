@@ -138,7 +138,9 @@ public class MemberController {
 		try {
 			int result = service.deleteMemberById(memberId);
 			if(result>0) {
-				return "redirect:/member/logout.do";
+				model.addAttribute("msg", "회원이 탈퇴에 성공하였습니다.");
+				model.addAttribute("url", "/member/logout.do");
+				return "common/serviceSuccess";
 			} else {
 				model.addAttribute("msg", "회원 탈퇴에 실패하였습니다.");
 				return "common/serviceFailed";

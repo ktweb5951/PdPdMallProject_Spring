@@ -22,7 +22,7 @@
  	</insert>
  	
  	<update id="updateFreeBoard">
- 		UPDATE FREEBOARD_TBL SET FREEBOARD_TITLE=#{freeBoardTitle}, FREEBOARD_CONTENT=#{freeBoardContent} WHERE FREEBOARD_NO=#{freeBoardNo}
+ 		UPDATE FREEBOARD_TBL SET FREEBOARD_TITLE=#{freeBoardTitle}, FREEBOARD_CONTENT=#{freeBoardContent}, FREEBOARD_FILENAME=#{freeBoardFilename}, FREEBOARD_FILEPATH=#{freeBoardFilepath}, FREEBOARD_FILELENGTH=#{freeBoardFilelength}  WHERE FREEBOARD_NO=#{freeBoardNo}
  	</update>
  	
  	<delete id="deleteFreeBoard">

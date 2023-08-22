@@ -30,6 +30,14 @@
 				</section>
 				<section id="mid">
 					<table>
+						<colgroup>
+							<col width="10%" />
+							<col width="40%" />
+							<col width="10%" />
+							<col width="10%" />
+							<col width="10%" />
+							<col width="20%" />
+						</colgroup>
 						<thead>
 							<tr>
 								<th>글번호</th>

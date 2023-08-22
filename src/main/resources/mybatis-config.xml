@@ -3,6 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<settings>
+        <setting name="cacheEnabled" value="false" />
+        <setting name="jdbcTypeForNull" value="NULL" />
+    </settings>
 	<typeAliases>
 		<typeAlias type="kr.co.pdpdmall.member.domain.Member" alias="Member"/>
 		<typeAlias type="kr.co.pdpdmall.freeBoard.domain.FreeBoard" alias="FreeBoard" />

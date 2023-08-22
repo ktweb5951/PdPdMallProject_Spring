@@ -24,5 +24,6 @@ public interface FreeBoardService {
 	List<FreeBoard> selectFreeBoardList(PageInfo pInfo);
 
 	public List<FreeBoard> searchByKeyword(PageInfo pInfo, Map<String, String> paramMap);
+
 }
 

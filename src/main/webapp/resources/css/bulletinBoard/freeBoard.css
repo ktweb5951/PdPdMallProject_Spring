@@ -214,7 +214,7 @@ main {
 
 table {
 	border-collapse: collapse;
-	width: 800px;
+	width: 1300px;
 	margin-top: 20px;
 }
 
@@ -264,7 +264,8 @@ a:hover {
 #btnArea {
 	width: 100%;
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
+	margin : 5px;
 }
 
 /* 버튼 스타일 */
@@ -324,3 +325,11 @@ a:hover {
         position: relative;
         z-index: 9999;
     }
+    
+select{
+	height : 38px;
+}
+
+input[type=submit]{
+	height : 45px;
+}

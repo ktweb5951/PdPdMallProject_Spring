@@ -29,7 +29,7 @@ public class FreeBoardStoreLogic implements FreeBoardStore {
 
 	@Override
 	public int deleteFreeBoard(SqlSession sqlSession, FreeBoard freeBoard) {
-		int result = sqlSession.insert("FreBoardMapper.deleteFreeBoard", freeBoard);
+		int result = sqlSession.insert("FreeBoardMapper.deleteFreeBoard", freeBoard);
 		return result;
 	}
 

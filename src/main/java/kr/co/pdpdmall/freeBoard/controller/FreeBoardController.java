@@ -3,9 +3,11 @@ package kr.co.pdpdmall.freeBoard.controller;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import kr.co.pdpdmall.freeBoard.domain.FreeBoard;
 import kr.co.pdpdmall.freeBoard.domain.PageInfo;
 import kr.co.pdpdmall.freeBoard.service.FreeBoardService;
+import kr.co.pdpdmall.member.domain.Member;
 
 @Controller
 public class FreeBoardController {
@@ -155,7 +158,7 @@ public class FreeBoardController {
 	
 	//게시글 검색
 	@RequestMapping(value="/bulletinBoard/freeBoard/search.do", method=RequestMethod.GET)
-	public String searchNoticeList(@RequestParam("searchCondition") String searchCondition
+	public String searchFreeBoardList(@RequestParam("searchCondition") String searchCondition
 			, @RequestParam("searchKeyword") String searchKeyword
 			, @RequestParam(value="page", required=false, defaultValue="1") Integer currentPage
 			, Model model) {
@@ -182,7 +185,152 @@ public class FreeBoardController {
 			model.addAttribute("url", "/bulletinBoard/freeBoard/list.do");
 			return "common/serviceFailed";	
 		}
+		
+	}
+	
+	//게시글 삭제
+	@RequestMapping(value="/bulletinBoard/freeBoard/delete.do", method=RequestMethod.GET)
+	public String deletePost(Model model
+			,@ModelAttribute FreeBoard freeBoard
+			,HttpSession session
+			) {
+		
+		try {
+			String loggedInMemberId = (String) session.getAttribute("memberId");
+			FreeBoard fOne = service.selectOneByNo(freeBoard);
+			String boardAuthorId = fOne.getFreeBoardWriter();
+			
+			//로그인 시에만 삭제 처리 가능
+			if (loggedInMemberId == null || loggedInMemberId.isEmpty()) {
+			    model.addAttribute("msg", "로그인 후에 삭제할 수 있습니다.");
+			    model.addAttribute("url", "/member/login.do"); 
+			    return "common/serviceFailed";
+			}
+			
+			if (loggedInMemberId != null && loggedInMemberId.equals(boardAuthorId)) {
+			    // 로그인한 사용자의 아이디와 작성자 아이디가 일치하는 경우에만 삭제 처리
+				int result = service.deleteFreeBoard(freeBoard);
+				if(result>0) {
+					model.addAttribute("msg", "게시글 삭제가 완료되었습니다..");
+					model.addAttribute("url", "/bulletinBoard/freeBoard/list.do");
+					return "common/serviceSuccess";
+				} else {
+					model.addAttribute("msg", "게시글 삭제가 완료되지 않았습니다.");
+					model.addAttribute("url", "/bulletinBoard/freeBoard/list.do");
+					return "common/serviceFailed";
+				}			
+			} else {
+			    // 작성자 아이디와 로그인한 사용자의 아이디가 일치하지 않는 경우
+			    model.addAttribute("msg", "게시글 작성자만 삭제할 수 있습니다.");
+			    model.addAttribute("url", "/bulletinBoard/freeBoard/list.do");
+			    return "common/serviceFailed";
+			}
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/serviceFailed";
+		}
+	}
+	
+	//게시글 수정
+	@RequestMapping(value="/bulletinBoard/freeBoard/update.do", method=RequestMethod.GET)
+	public String modifyCheckPost(Model model
+			,@ModelAttribute FreeBoard freeBoard
+			,HttpSession session
+			) {
+	    FreeBoard fOne = service.selectOneByNo(freeBoard);
+	    if (fOne != null) {
+	        String loggedInMemberId = (String) session.getAttribute("memberId");
+	        String boardAuthorId = fOne.getFreeBoardWriter();
+
+			if (loggedInMemberId == null || loggedInMemberId.isEmpty()) {
+			    model.addAttribute("msg", "로그인 후에 수정할 수 있습니다.");
+			    model.addAttribute("url", "/member/login.do"); 
+			    return "common/serviceFailed";
+			}
+	        
+	        if (loggedInMemberId != null && loggedInMemberId.equals(boardAuthorId)) {
+	            model.addAttribute("freeBoard", fOne);        
+	            return "bulletinBoard/freeBoard/modify";
+	        } else {
+	            model.addAttribute("msg", "게시글 작성자만 수정할 수 있습니다.");
+	            model.addAttribute("url", "/bulletinBoard/freeBoard/list.do");
+	            return "common/serviceFailed";
+	        }
+	    } else {
+	        model.addAttribute("msg", "데이터 조회가 완료되지 않았습니다.");
+	        model.addAttribute("url", "/bulletinBoard/freeBoard/list.do");
+	        return "common/serviceFailed";
+	    }
+	}
+	
+	@RequestMapping(value="/bulletinBoard/freeBoard/update.do", method=RequestMethod.POST)
+	public String modifyPost(Model model
+			,@ModelAttribute FreeBoard freeBoard
+            ,@RequestParam(value = "uploadFile", required = false) MultipartFile uploadFile
+            ,@RequestParam(value = "freeBoardFilename") String existingFileName
+            ,@RequestParam(value = "freeBoardFilepath") String existingFilePath
+            ,@RequestParam(value = "freeBoardFilelength") Long existingFileLength
+			,HttpServletRequest request
+			,HttpSession session
+			) {
+		
+		try {	        
+            if (!uploadFile.getOriginalFilename().equals("")) {
+                // 기존 파일 삭제
+                File oldFile = new File(existingFilePath);
+                if (oldFile.exists()) {
+                    oldFile.delete();
+                }
+		            
+            	String fileName = uploadFile.getOriginalFilename();
+				String root =request.getSession().getServletContext().getRealPath("resources");
+				String saveFolder = root + "\\nuploadFiles";
+				File folder = new File(saveFolder);
+				if(!folder.exists()) {
+					folder.mkdir();
+				}
+				// ================= 파일 경로 =================
+				String savePath = saveFolder + "\\" + fileName;
+				File file = new File(savePath);
+				// ================= 파일 저장 =================
+				uploadFile.transferTo(file);
+				// ================= 파일 크기 =================
+				long fileLength = uploadFile.getSize();
+				
+				freeBoard.setFreeBoardFilename(fileName);
+				freeBoard.setFreeBoardFilepath(savePath);
+				freeBoard.setFreeBoardFilelength(fileLength);
+            } else {
+                // 파일이 업로드되지 않은 경우 기존 파일 정보 사용
+                freeBoard.setFreeBoardFilename(existingFileName);
+                freeBoard.setFreeBoardFilepath(existingFilePath);
+                freeBoard.setFreeBoardFilelength(existingFileLength);
+            }		
+			
+
+			int result = service.updateFreeBoard(freeBoard);
+			if(result>0) {
+				model.addAttribute("msg", "게시글 수정이 완료되었습니다..");
+				model.addAttribute("url", "/bulletinBoard/freeBoard/list.do");
+				return "common/serviceSuccess";
+			} else {
+				model.addAttribute("msg", "게시글 수정이 완료되지 않았습니다.");
+				model.addAttribute("url", "/bulletinBoard/freeBoard/list.do");
+				return "common/serviceFailed";
+			}	
+	
+	        
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			model.addAttribute("url", "/bulletinBoard/freeBoard/list.do");
+			return "common/serviceFailed";
+		}
+		
+	}
 }
 	
-	}
+	
 

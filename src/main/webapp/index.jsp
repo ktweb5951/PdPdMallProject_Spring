@@ -16,7 +16,7 @@
 		<link rel="stylesheet" href="../resources/css/index.css">
 		<link rel="stylesheet" href="../resources/css/reset.css">
 <!-- 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-		<title>메인페이지</title>
+		<title>메인페이지</title>		
 
 	</head>
 	<body>
@@ -400,7 +400,6 @@
 			    showSlide(currentIndex);
 			    setInterval(goToNextSlide, 5000);
 			});
-
 //         $(document).ready(function() {
 //             const slides = $(".slide img");
 //             const prevBtn = $(".prev-btn");

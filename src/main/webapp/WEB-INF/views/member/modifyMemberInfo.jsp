@@ -42,10 +42,10 @@
 		                        </li>
 		                        <li>
 		                            <label>비밀번호</label>
-		                            <input type="password" id="memberPw" name="memberPw" placeholder="새 비밀번호 입력">
+		                            <input type="password" id="memberPw" name="memberPw" placeholder="새 비밀번호 입력" style="border-color:skyblue;" />
 		                        </li>
 		                        <li>
-		                            <label>비밀번호 확인</label><input type="password" id="pw-re" placeholder="새 비밀번호 확인">
+		                            <label>비밀번호 확인</label><input type="password" id="pw-re" placeholder="새 비밀번호 확인" style="border-color:skyblue;">
 		                        </li>
 		                        <li>
 		                            <label>이름</label><input type="text" id="memberName" name="memberName" value="${member.memberName}" readonly >
@@ -53,14 +53,14 @@
 		                        <li>
 		                            <label>닉네임</label>
 		                            <div>
-		                                <input type="text" id="memberNickname" name="memberNickname"  value="${member.memberNickname}">
+		                                <input type="text" id="memberNickname" name="memberNickname"  value="${member.memberNickname}" style="border-color:skyblue;">
 		                                <button onclick="validityBtn();">중복확인</button>
 		                            </div>
 		                        </li>
 		                        <li>
 		                            <label>핸드폰번호</label>
 		                            <div>
-		                                <input type="text" id="memberPhone" name="memberPhone" value="${member.memberPhone}">
+		                                <input type="text" id="memberPhone" name="memberPhone" value="${member.memberPhone}" style="border-color:skyblue;">
 		                                <button class="certifiedBtn">인증받기</button>
 		                            </div>                                 
 		                            <div>
@@ -70,15 +70,15 @@
 		                        <li>
 		                            <label>주소</label>
 		                            <div>
-										<input class="addressClass" type="text" id="memberPostCode" name="memberPostCode" placeholder="우편번호" value="${member.memberPostCode}">
-										<input class="address" type="text" id="memberAddress" name="memberAddress" value="${member.memberAddress}"><br>
-										<input type="text" id="memberDetailAddress" name="memberDetailAddress" placeholder="상세주소" value="${member.memberDetailAddress}">
+										<input class="addressClass" type="text" id="memberPostCode" name="memberPostCode" placeholder="우편번호" value="${member.memberPostCode}" style="border-color:skyblue;">
+										<input class="address" type="text" id="memberAddress" name="memberAddress" value="${member.memberAddress}" style="border-color:skyblue;"><br>
+										<input type="text" id="memberDetailAddress" name="memberDetailAddress" placeholder="상세주소" value="${member.memberDetailAddress}" style="border-color:skyblue;">
 										<button type="button" onclick="sample5_execDaumPostcode()">주소 검색</button><br>
 		                            </div> 	
 									<div id="map" style="width:300px;height:100px;margin-top:10px;"></div>
                                 </li>
 		                        <li>
-		                            <label>이메일</label><input type="text" id="memberEmail" name="memberEmail" value="${member.memberEmail}">
+		                            <label>이메일</label><input type="text" id="memberEmail" name="memberEmail" value="${member.memberEmail}" style="border-color:skyblue;">
 		                        </li>
 		                    </ul>
 		                    <span id="message" class="message"></span>
@@ -141,80 +141,148 @@
 				           }).open();
 				       }
 				       
-				       document.addEventListener("DOMContentLoaded", () => {          
-			               const headerElement = document.querySelector("header");
-			               loadHTML("/html/components/header.jsp", headerElement);
-			   
-			               const footerElement = document.querySelector("footer");
-			               loadHTML("/html/components/footer.html", footerElement);
-		
-			               document.querySelector("form").addEventListener("submit", (e)=>{
-			                   // 화면출력
-			                   const msgTag = document.querySelector("#message");
-			                   msgTag.style.color= "red";
-			                   msgTag.style.fontWeight = "bolder";
-		
-			                   const userId = document.querySelector("#memberId").value;
-			                   const userPw = document.querySelector("#memberPw").value;
-			                   const pwCheck = document.querySelector("#pw-re").value;
-			                   const userName = document.querySelector("#member-name").value;
-			                   const userNickName = document.querySelector("#member-nickname").value;
-			                   const address = document.querySelector("#member-address").value;
-			                   const post1 = document.querySelector("#post-1").value;
-			                   const post2 = document.querySelector("#post-2").value;
-			                   const email = document.querySelector("#member-email").value;
-			                   const telPhone = document.querySelector("#member-phone").value;
-			                   
-			                   const idRegExp = /^[a-z]\w{3,11}$/g;
-			                   const pwRegExp = /^[a-zA-Z0-9]{6,14}$/g;
-			                   const nameRegExp = /^[가-힣]+$/g;   
-			                   const nickNamRegExp = /^[a-zA-Z가-힣]{1,12}$/g;   
-			                   const addrRegExp = /[^a-zA-Z/s]+$/gm;
-			                   const postNumRegExp = /^[0-9]+$/g;
-			                   const emailRegExp = /^[a-zA-Z0-9]{4,12}@[a-z]+\.[a-z]{3}/g;
-			                   const telRegExp = /^[0-9]+$/g;
-		
-			                   if(!idRegExp.test(userId)){
-			                       e.preventDefault();
-			                       msgTag.innerText = "아이디는 영어소문자,숫자만 입력 가능합니다.";   
-			                   } else if(!pwRegExp.test(userPw)){
-			                       e.preventDefault();
-			                       msgTag.innerText = "비밀번호는 영어소문자,대문자,숫자만 입력가능합니다.";
-			                   } else if(userPw !== pwCheck){
-			                       e.preventDefault();
-			                       msgTag.innerText = "비밀번호가 일치하지 않습니다.";
-			                   } else if(!nameRegExp.test(userName)){
-			                       e.preventDefault();
-			                       msgTag.innerText = "이름은 무조건 한글만 입력 가능합니다.";
-			                   } else if(!nickNamRegExp.test(userNickName)){
-			                       e.preventDefault();
-			                       msgTag.innerText = "닉네임은 한글,영어만 입력 가능합니다.";
-			                   } else if(!telRegExp.test(telPhone)){
-			                       e.preventDefault();
-			                       msgTag.innerText = "전화번호는 숫자만 입력 가능합니다. ";  
-			                   }  else if(!addrRegExp.test(address)){
-			                       e.preventDefault();
-			                       msgTag.innerText = "주소에는 영어 사용 불가(공백 불가)";  
-			                   } else if(!postNumRegExp.test(post1) && !postNumRegExp.test(post2)){
-			                       e.preventDefault();
-			                       msgTag.innerText ="우편번호는 무조건 숫자만 입력가능합니다."; 
-			                   } else if(!emailRegExp.test(email)){
-			                       e.preventDefault();
-			                       msgTag.innerText = "이메일은 @가 포함 되어야 합니다. ";
-			                   } 
-			                   
-			               });
-		
-			               document.querySelector(".certifiedBtn").addEventListener("click", ()=>{
-			                   alert("인증번호를 발송했습니다.");
-			               });
-			           })
-		
-			           function validityBtn() {
-			               if(document.querySelector("#user-id").value!==""){
-			                   alert("사용가능합니다.");
-			               }
-			           }
+						document.addEventListener("DOMContentLoaded", () => {
+						    const msgTag = document.querySelector("#message");
+						    const userId = document.querySelector("#memberId");
+						    const userPw = document.querySelector("#memberPw");
+						    const pwCheck = document.querySelector("#pw-re");
+						    const userName = document.querySelector("#memberName");
+						    const userNickName = document.querySelector("#memberNickname");
+						    const address = document.querySelector("#memberAddress");
+						    const email = document.querySelector("#memberEmail");
+						    const telPhone = document.querySelector("#memberPhone");
+						    const certifyButton = document.querySelector("#certifyButton");
+						
+						    const idRegExp = /^[a-z]\w{3,11}$/;
+						    const pwRegExp = /^[a-zA-Z0-9]{6,14}$/;
+						    const nameRegExp = /^[가-힣]+$/;
+						    const nickNameRegExp = /^[a-zA-Z가-힣]{1,12}$/;
+						    const addrRegExp = /^[a-zA-Z\s]+$/; 
+						    const postNumRegExp = /^[0-9]+$/;
+						    const emailRegExp = /^[a-zA-Z0-9]{4,12}@[a-z]+\.[a-z]{2,3}$/; 
+						    const telRegExp = /^\d{9,11}$/; 
+						
+
+						    userId.addEventListener("input", () => {
+						        const userIdValue = userId.value.trim();
+						        if (!idRegExp.test(userIdValue)) {
+						            showError("아이디는 영어 소문자, 숫자만 입력 가능합니다.");
+						        } else {
+						            clearError();
+						        }
+						    });
+						
+
+						    userPw.addEventListener("input", () => {
+						        const userPwValue = userPw.value.trim();
+						        if (!pwRegExp.test(userPwValue)) {
+						            showError("비밀번호는 영어 대/소문자, 숫자만 포함하여 6~14자여야 합니다.");
+						        } else {
+						            clearError();
+						        }
+						    });
+						
+
+						    pwCheck.addEventListener("input", () => {
+						        if (userPw.value !== pwCheck.value) {
+						            showError("비밀번호가 일치하지 않습니다.");
+						        } else {
+						            clearError();
+						        }
+						    });
+						
+
+						    userName.addEventListener("input", () => {
+						        const userNameValue = userName.value.trim();
+						        if (!nameRegExp.test(userNameValue)) {
+						            showError("이름은 한글로만 입력 가능합니다.");
+						        } else {
+						            clearError();
+						        }
+						    });
+						
+
+						    userNickName.addEventListener("input", () => {
+						        const userNickNameValue = userNickName.value.trim();
+						        if (!nickNameRegExp.test(userNickNameValue)) {
+						            showError("닉네임은 한글 또는 영어로 1~12자로 입력 가능합니다.");
+						        } else {
+						            clearError();
+						        }
+						    });
+						
+
+						    address.addEventListener("input", () => {
+						        const addressValue = address.value.trim();
+						        if (!addrRegExp.test(addressValue)) {
+						            showError("주소는 영어 대/소문자만 입력 가능합니다.");
+						        } else {
+						            clearError();
+						        }
+						    });
+						
+
+						    email.addEventListener("input", () => {
+						        const emailValue = email.value.trim();
+						        if (!emailRegExp.test(emailValue)) {
+						            showError("유효한 이메일 형식이 아닙니다.");
+						        } else {
+						            clearError();
+						        }
+						    });
+						
+
+						    telPhone.addEventListener("input", () => {
+						        const telPhoneValue = telPhone.value.trim();
+						        if (!telRegExp.test(telPhoneValue)) {
+						            showError("전화번호는 9~11자의 숫자로 입력해야 합니다.");
+						            certifyButton.setAttribute("disabled", "disabled"); // 버튼 비활성화
+						        } else {
+						            clearError();
+						            certifyButton.removeAttribute("disabled"); // 버튼 활성화
+						        }
+						    });
+						    
+						    certifyButton.addEventListener("click", (event) => {
+						        const telPhoneValue = telPhone.value.trim();
+						        if (!telRegExp.test(telPhoneValue)) {
+						            event.preventDefault(); 
+						            alert("핸드폰 번호를 확인해주세요.");
+						        } else {
+						            alert("인증 메시지가 발송되었습니다.");
+						            // 여기에 인증받기 로직 추가
+						        }
+						    });
+						
+						    function showError(errorMessage) {
+						        msgTag.style.color = "red";
+						        msgTag.style.fontWeight = "bolder";
+						        msgTag.style.fontSize = "10px";
+						        msgTag.innerText = errorMessage;
+						    }
+						
+
+						    function clearError() {
+						        msgTag.innerText = "";
+						    }
+						    
+						    pwCheck.addEventListener("input", () => {
+						        if (userPw.value !== pwCheck.value) {
+						            showError("비밀번호가 일치하지 않습니다.");
+						            pwCheck.style.borderColor = "red"; 
+						        } else {
+						        	msgTag.style.color = "blue";
+						        	showError("비밀번호가 일치합니다.");
+						            pwCheck.style.borderColor = "blue";
+						        }
+						    });
+						    
+						    function isPhoneNumberValid() {
+						        const telPhoneValue = telPhone.value.trim();
+						        return telRegExp.test(telPhoneValue);
+						    }
+
+						});
 	    </script>
 	</body>
 </html>

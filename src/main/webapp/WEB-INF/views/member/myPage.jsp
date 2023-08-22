@@ -67,12 +67,6 @@
 									<div id="map" style="width:300px;height:100px;margin-top:10px;"></div>
 		                        </li>
 		                        <li>
-		                            <label>우편번호</label>
-		                            <div>
-		                                <input type="text" size="5" id="post-1" name="post-1"> - <input type="text" size="5" id="post-2" name="post-2"> 
-		                            </div>
-		                        </li>
-		                        <li>
 		                            <label>이메일</label>
 		                            <div>
 		                           		<input type="text" id="memberEmail" name="memberEmail" value="${member.memberEmail}" readonly>
