@@ -103,6 +103,35 @@ public class MemberController {
 		}
 	}
 	
+	@RequestMapping(value="/member/checkId.do", method=RequestMethod.GET)
+	public String checkMemberId(Model model
+			,@RequestParam("memberId") String memberId
+			) {
+//		Member member = new Member();
+//		if(member != null) {
+//			model.addAttribute("isOk", "1");
+//		}
+//		return "member/register";
+		//SELECT COUNT(*) FROM MEMBER_TBL WHERE MEMBER_ID =?
+		
+		try {
+			int result = service.selectCheckById(memberId);
+			if(result>0) {
+                model.addAttribute("idCheckMessage", "이미 사용 중인 아이디입니다.");
+                model.addAttribute("idCheckColor", "red");
+				return "member/register";
+			} else {
+                model.addAttribute("idCheckMessage", "사용 가능한 아이디입니다.");
+                model.addAttribute("idCheckColor", "green");
+                return "member/register";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/serviceFailed";
+		}
+	}
+	
 	//회원 정보
 	@RequestMapping(value="/member/myInfo.do", method=RequestMethod.GET)
 	public String showDetailMember(

@@ -39,6 +39,12 @@ public class MemberStoreLogic implements MemberStore{
 		return mOne;
 	}
 
+	@Override
+	public int selectCheckById(SqlSession sqlSession, String memberId) {
+		int result = sqlSession.selectOne("MemberMapper.selectCheckById", memberId);
+		return result;
+	}
+
 	
 
 }

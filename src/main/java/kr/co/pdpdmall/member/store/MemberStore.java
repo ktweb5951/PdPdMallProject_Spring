@@ -16,4 +16,6 @@ public interface MemberStore {
 	
 	public Member selectOneById(SqlSession sqlSession, String memberId);
 
+	public int selectCheckById(SqlSession sqlSession, String memberId);
+
 }

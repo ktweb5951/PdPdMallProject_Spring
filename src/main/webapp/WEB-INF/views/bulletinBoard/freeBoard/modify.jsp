@@ -36,9 +36,10 @@
                     
                         <label for="file">이미지 첨부</label>
                         <input type="file" id="uploadFile" name="uploadFile">
-                        <input type="text" id="freeBoardFilename" name="freeBoardFilename" value="${freeBoard.freeBoardFilename}">
-                        <input type="text" id="freeBoardFilepath" name="freeBoardFilepath" value="${freeBoard.freeBoardFilepath}">
-                        <input type="text" id="freeBoardFilelength" name="freeBoardFilelength" value="${freeBoard.freeBoardFilelength}">                        
+                        <input type="hidden" id="freeBoardFilename" name="freeBoardFilename" value="${freeBoard.freeBoardFilename}">
+                        <input type="hidden" id="freeBoardFileRename" name="freeBoardFileRename" value="${freeBoard.freeBoardFileRename}">
+                        <input type="hidden" id="freeBoardFilepath" name="freeBoardFilepath" value="${freeBoard.freeBoardFilepath}">
+                        <input type="hidden" id="freeBoardFilelength" name="freeBoardFilelength" value="${freeBoard.freeBoardFilelength}">                        
                     
                         <label for="content">내용</label>
                         <textarea id="freeBoardContent" name="freeBoardContent" rows="20" required>${freeBoard.freeBoardContent}</textarea>

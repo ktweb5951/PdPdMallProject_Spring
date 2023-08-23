@@ -35,4 +35,8 @@
  	<select id="selectOneById" resultMap="memberResultMap">
  		SELECT * FROM MALLMEMBER_TBL WHERE MEMBER_ID=#{memberId}
  	</select>
+ 	
+ 	<select id="selectCheckById" resultType="_int">
+ 		SELECT COUNT(*) FROM MALLMEMBER_TBL WHERE MEMBER_ID=#{memberId}
+ 	</select>
 </mapper>

@@ -40,9 +40,11 @@
 				</p>
 				<div class="post-content">
 					<c:if test="${freeBoard.freeBoardFilename != '' || freeBoard.freeBoardFilename ne null}">
-						<img src="/resources/nuploadFiles/${freeBoard.freeBoardFilename}"
+						<img src="/resources/nuploadFiles/${freeBoard.freeBoardFileRename}"
 						alt="포스트이미지"><br> 
+						<a href="../resources/nuploadFiles/${freeBoard.freeBoardFileRename }" download>${freeBoard.freeBoardFileRename }</a>
 					</c:if>
+						<br>
 						<span>${freeBoard.freeBoardContent}</span>
 				</div>
 			</div>

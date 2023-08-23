@@ -13,5 +13,7 @@ public interface MemberService {
 	public Member selectCheckLogin(Member member);
 	
 	public Member selectOneById(String memberId);
+
+	public int selectCheckById(String memberId);
 	
 }

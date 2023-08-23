@@ -179,7 +179,7 @@
                                     <label>아이디</label>
                                     <div>
                                     <input type="text" id="memberId" name="memberId">
-                                        <button onclick="validityBtn();">중복확인</button>
+                                        <button type="button" onclick="idCheckBtn();">중복확인</button>
                                     </div>
                                 </li>
                                 <li>
@@ -197,7 +197,7 @@
                                     <label>닉네임</label>
                                     <div>
                                         <input type="text" id="memberNickname" name="memberNickname">
-                                        <button type="button" onclick="validityBtn();">중복확인</button>
+                                        <button type="button" onclick="idCheckBtn();">중복확인</button>
                                         
                                     </div>
                                 </li>
@@ -284,6 +284,9 @@
 			           }).open();
 			       }
       
+			function idCheckBtn(){
+				location.href="/member/checkId.do";
+			}
         </script>
     </body>
 </html>

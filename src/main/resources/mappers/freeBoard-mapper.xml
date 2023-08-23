@@ -13,16 +13,17 @@
  		<result property="freeBoardDate" column="FREEBOARD_DATE" />
  		<result property="updateDate" column="UPDATE_DATE" />
 		<result property="freeBoardFilename" column="FREEBOARD_FILENAME"/>
+		<result property="freeBoardFileRename" column="FREEBOARD_FILERENAME"/>
 		<result property="freeBoardFilepath" column="FREEBOARD_FILEPATH"/>
 		<result property="freeBoardFilelength" column="FREEBOARD_FILELENGTH"/> 		
  	</resultMap>
  
   	<insert id="insertFreeBoard" >
- 		INSERT INTO FREEBOARD_TBL VALUES(SEQ_FREEBOARDNO.NEXTVAL,#{freeBoardTitle},#{freeBoardContent},#{freeBoardWriter},DEFAULT,DEFAULT,DEFAULT,DEFAULT, #{freeBoardFilename}, #{freeBoardFilepath}, #{freeBoardFilelength})
+ 		INSERT INTO FREEBOARD_TBL VALUES(SEQ_FREEBOARDNO.NEXTVAL,#{freeBoardTitle},#{freeBoardContent},#{freeBoardWriter},DEFAULT,DEFAULT,DEFAULT,DEFAULT, #{freeBoardFilename}, #{freeBoardFileRename},#{freeBoardFilepath}, #{freeBoardFilelength})
  	</insert>
  	
  	<update id="updateFreeBoard">
- 		UPDATE FREEBOARD_TBL SET FREEBOARD_TITLE=#{freeBoardTitle}, FREEBOARD_CONTENT=#{freeBoardContent}, FREEBOARD_FILENAME=#{freeBoardFilename}, FREEBOARD_FILEPATH=#{freeBoardFilepath}, FREEBOARD_FILELENGTH=#{freeBoardFilelength}  WHERE FREEBOARD_NO=#{freeBoardNo}
+ 		UPDATE FREEBOARD_TBL SET FREEBOARD_TITLE=#{freeBoardTitle}, FREEBOARD_CONTENT=#{freeBoardContent}, FREEBOARD_FILENAME=#{freeBoardFilename}, FREEBOARD_FILERENAME=#{freeBoardFileRename}, FREEBOARD_FILEPATH=#{freeBoardFilepath}, FREEBOARD_FILELENGTH=#{freeBoardFilelength}, UPDATE_DATE=DEFAULT  WHERE FREEBOARD_NO=#{freeBoardNo}
  	</update>
  	
  	<delete id="deleteFreeBoard">

@@ -12,6 +12,7 @@ public class FreeBoard {
 	private Timestamp freeBoardDate;
 	private Timestamp updateDate;
 	private String freeBoardFilename;
+	private String freeBoardFileRename;
 	private String freeBoardFilepath;
 	private long freeBoardFilelength;
 	
@@ -90,6 +91,14 @@ public class FreeBoard {
 		this.freeBoardFilename = freeBoardFilename;
 	}
 
+	public String getFreeBoardFileRename() {
+		return freeBoardFileRename;
+	}
+	
+	public void setFreeBoardFileRename(String freeBoardFileRename) {
+		this.freeBoardFileRename = freeBoardFileRename;
+	}
+	
 	public String getFreeBoardFilepath() {
 		return freeBoardFilepath;
 	}
@@ -111,9 +120,11 @@ public class FreeBoard {
 		return "FreeBoard [freeBoardNo=" + freeBoardNo + ", freeBoardTitle=" + freeBoardTitle + ", freeBoardContent="
 				+ freeBoardContent + ", freeBoardWriter=" + freeBoardWriter + ", viewCount=" + viewCount
 				+ ", rcmndCount=" + rcmndCount + ", freeBoardDate=" + freeBoardDate + ", updateDate=" + updateDate
-				+ ", freeBoardFilename=" + freeBoardFilename + ", freeBoardFilepath=" + freeBoardFilepath
-				+ ", freeBoardFilelength=" + freeBoardFilelength + "]";
+				+ ", freeBoardFilename=" + freeBoardFilename + ", freeBoardFileRename=" + freeBoardFileRename
+				+ ", freeBoardFilepath=" + freeBoardFilepath + ", freeBoardFilelength=" + freeBoardFilelength + "]";
 	}
+
+
 	
 
 
