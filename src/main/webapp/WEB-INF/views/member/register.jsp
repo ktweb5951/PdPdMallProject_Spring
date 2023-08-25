@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <!DOCTYPE html>
     <html lang="ko">
     <head>
@@ -152,15 +152,17 @@
 			        }
 			    });
 			    
-			    function isPhoneNumberValid() {
-			        const telPhoneValue = telPhone.value.trim();
-			        return telRegExp.test(telPhoneValue);
-			    }
-
 			});
 			
 
-
+	        function idCheckBtn(){
+	        	const memberId = document.querySelector("#memberId").value;
+	        	if(memberId === "" || memberId === null){
+	                alert("아이디를 입력하세요.");
+	                return;
+	        	}
+				location.href="/member/checkId.do?memberId="+memberId;		
+	        }
         </script>      
           
         <div id="container">
@@ -178,8 +180,15 @@
                                 <li>
                                     <label>아이디</label>
                                     <div>
-                                    <input type="text" id="memberId" name="memberId">
-                                        <button type="button" onclick="idCheckBtn();">중복확인</button>
+                                    <input type="text" id="memberId" name="memberId" value="${mId}">
+                                    <button type="button"  onclick="idCheckBtn();">중복확인</button><br>
+                                    <c:if test="${idCheckResult eq 1}">
+                                   	 <span style="color:red;font-size:10px;">이미 사용중인 아이디입니다.</span>
+                                    </c:if>
+    								<c:if test="${idCheckResult eq 0}">
+                                    <span style="color:blue;font-size:10px;">사용 가능한 아이디입니다.</span>                              
+                                    </c:if>
+                                                        		           
                                     </div>
                                 </li>
                                 <li>
@@ -214,9 +223,9 @@
                                 <li>
                                    <label>주소</label>
 		                            <div>
-										<input class="addressClass" type="text" id="memberPostCode" name="memberPostCode" placeholder="우편번호">
-										<input type="text" id="memberAddress" name="memberAddress" placeholder="주소"><br>
-										<input type="text" id="memberDetailAddress" name="memberDetailAddress" placeholder="상세주소">
+										<input class="addressClass" type="text" id="memberPostCode" name="memberPostCode" placeholder="우편번호" required>
+										<input type="text" id="memberAddress" name="memberAddress" placeholder="주소" required ><br>
+										<input type="text" id="memberDetailAddress" name="memberDetailAddress" placeholder="상세주소" required>
 										<button type="button" onclick="sample5_execDaumPostcode()">주소 검색</button><br>
 		                            </div>
 									<div id="map" style="width:300px;height:100px;margin-top:10px;"></div>
@@ -284,9 +293,6 @@
 			           }).open();
 			       }
       
-			function idCheckBtn(){
-				location.href="/member/checkId.do";
-			}
         </script>
     </body>
 </html>

@@ -62,7 +62,6 @@
 										<input class="addressClass" type="text" id="memberPostCode" name="memberPostCode" value="${member.memberPostCode}">
 										<input class="address" type="text" id="memberAddress" name="memberAddress" value="${member.memberAddress}"><br>
 										<input type="text" id="memberDetailAddress" name="memberDetailAddress"value="${member.memberDetailAddress}">
-										<button type="button" onclick="sample5_execDaumPostcode()">주소 검색</button><br>
 		                            </div> 	
 									<div id="map" style="width:300px;height:100px;margin-top:10px;"></div>
 		                        </li>
@@ -92,15 +91,33 @@
 		        level: 5 // 지도의 확대 레벨
 		    };  
 		
-				       //지도를 미리 생성
-				       var map = new daum.maps.Map(mapContainer, mapOption);
-				       //주소-좌표 변환 객체를 생성
-				       var geocoder = new daum.maps.services.Geocoder();
-				       //마커를 미리 생성
-				       var marker = new daum.maps.Marker({
-				           position: new daum.maps.LatLng(37.537187, 127.005476),
-				           map: map
-				       });
+			//지도를 미리 생성
+			var map = new daum.maps.Map(mapContainer, mapOption);
+			//주소-좌표 변환 객체를 생성
+			var geocoder = new daum.maps.services.Geocoder();
+			//마커를 미리 생성
+			var marker = new daum.maps.Marker({
+			    position: new daum.maps.LatLng(37.537187, 127.005476),
+			    map: map
+			});
+			var address = "${member.memberAddress}";
+			geocoder.addressSearch(address, function(results, status) {
+                // 정상적으로 검색이 완료됐으면
+                if (status === daum.maps.services.Status.OK) {
+
+                    var result = results[0]; //첫번째 결과의 값을 활용
+
+                    // 해당 주소에 대한 좌표를 받아서
+                    var coords = new daum.maps.LatLng(result.y, result.x);
+                    // 지도를 보여준다.
+                    mapContainer.style.display = "block";
+                    map.relayout();
+                    // 지도 중심을 변경한다.
+                    map.setCenter(coords);
+                    // 마커를 결과값으로 받은 위치로 옮긴다.
+                    marker.setPosition(coords)
+                }
+            });
 				
 				
 				       function sample5_execDaumPostcode() {
@@ -112,23 +129,7 @@
 				                   document.getElementById("memberAddress").value = addr;
 				                   document.getElementById("memberPostCode").value = postCode;
 				                   // 주소로 상세 정보를 검색
-				                   geocoder.addressSearch(data.address, function(results, status) {
-				                       // 정상적으로 검색이 완료됐으면
-				                       if (status === daum.maps.services.Status.OK) {
-				
-				                           var result = results[0]; //첫번째 결과의 값을 활용
-				
-				                           // 해당 주소에 대한 좌표를 받아서
-				                           var coords = new daum.maps.LatLng(result.y, result.x);
-				                           // 지도를 보여준다.
-				                           mapContainer.style.display = "block";
-				                           map.relayout();
-				                           // 지도 중심을 변경한다.
-				                           map.setCenter(coords);
-				                           // 마커를 결과값으로 받은 위치로 옮긴다.
-				                           marker.setPosition(coords)
-				                       }
-				                   });
+				                   
 				               }
 				           }).open();
 				       }

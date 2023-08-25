@@ -103,26 +103,22 @@ public class MemberController {
 		}
 	}
 	
+	
+	//아이디 중복확인
 	@RequestMapping(value="/member/checkId.do", method=RequestMethod.GET)
 	public String checkMemberId(Model model
 			,@RequestParam("memberId") String memberId
 			) {
-//		Member member = new Member();
-//		if(member != null) {
-//			model.addAttribute("isOk", "1");
-//		}
-//		return "member/register";
 		//SELECT COUNT(*) FROM MEMBER_TBL WHERE MEMBER_ID =?
 		
-		try {
+		try {        
 			int result = service.selectCheckById(memberId);
 			if(result>0) {
-                model.addAttribute("idCheckMessage", "이미 사용 중인 아이디입니다.");
-                model.addAttribute("idCheckColor", "red");
+                model.addAttribute("idCheckResult", result);
 				return "member/register";
 			} else {
-                model.addAttribute("idCheckMessage", "사용 가능한 아이디입니다.");
-                model.addAttribute("idCheckColor", "green");
+                model.addAttribute("idCheckResult", result);
+                model.addAttribute("mId", memberId);
                 return "member/register";
 			}
 		} catch (Exception e) {
