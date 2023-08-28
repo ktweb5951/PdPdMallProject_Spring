@@ -9,11 +9,12 @@
     </settings>
 	<typeAliases>
 		<typeAlias type="kr.co.pdpdmall.member.domain.Member" alias="Member"/>
-		<typeAlias type="kr.co.pdpdmall.freeBoard.domain.FreeBoard" alias="FreeBoard" />
+		<typeAlias type="kr.co.pdpdmall.freeBoard.domain.FreeBoardReply" alias="Reply" />
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml" />
 		<mapper resource="mappers/freeBoard-mapper.xml" />
+		<mapper resource="mappers/reply-mapper.xml" />
 	</mappers>
 </configuration>

@@ -23,7 +23,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 import kr.co.pdpdmall.freeBoard.domain.FreeBoard;
+import kr.co.pdpdmall.freeBoard.domain.FreeBoardReply;
 import kr.co.pdpdmall.freeBoard.domain.PageInfo;
+import kr.co.pdpdmall.freeBoard.service.FreeBoardReplyService;
 import kr.co.pdpdmall.freeBoard.service.FreeBoardService;
 import kr.co.pdpdmall.member.domain.Member;
 
@@ -32,6 +34,9 @@ public class FreeBoardController {
 
 	@Autowired
 	private FreeBoardService service;
+	
+	@Autowired
+	private FreeBoardReplyService rService;
 	
 	//글작성
 	@RequestMapping(value="/bulletinBoard/freeBoard/insert.do", method=RequestMethod.GET)
@@ -253,12 +258,17 @@ public class FreeBoardController {
 	@RequestMapping(value="/bulletinBoard/freeBoard/detail.do", method=RequestMethod.GET) 
 	public String showPost(Model model
 			,@ModelAttribute FreeBoard freeBoard
+			,@RequestParam("freeBoardNo") Integer freeBoardNo
 			) {
 		//SELECT * FROM FREEBOARD_TBL WHERE FREEBOARD_NO = ?
 		
 		try {
 			FreeBoard fOne = service.selectOneByNo(freeBoard);
 			if(fOne!=null) {
+				List<FreeBoardReply> replyList = rService.selectReplyList(freeBoardNo);
+				if(replyList.size()>0) {
+					model.addAttribute("rList", replyList);
+				}
 				model.addAttribute("freeBoard", fOne);
 				return "bulletinBoard/freeBoard/detail";
 			}else {

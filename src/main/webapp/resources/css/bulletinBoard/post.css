@@ -1,6 +1,6 @@
 #container {
     width: 1300px;
-    height: 1200px;
+    height: 1700px;
     display: flex;
     flex-direction: column;
     margin: 0 auto;
@@ -250,7 +250,74 @@ main button {
     cursor: pointer;
 }
 
-footer{
-    height : 100px;
-    width: 100%;
+/* 댓글 입력창 */
+#reply-form table {
+	width: 700px;
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
 }
+
+#reply-form textarea {
+    width: 80%;
+    height: 100px;
+    resize: none;
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+#reply-form input[type="submit"] {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+/* 댓글 목록 테이블 */
+#reply-table {
+    margin-top: 20px;
+    width: 1000px;
+    border-collapse: collapse;
+}
+
+#reply-table th,
+#reply-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+#reply-table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    text-align: center;
+}
+
+#reply-table td {
+    vertical-align: top;
+}
+
+/* 댓글 수정 폼 */
+#replyModifyForm {
+    background-color: #f5f5f5;
+    padding: 10px;
+    display: none;
+}
+
+#replyModifyForm input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+#replyModifyForm input[type="button"] {
+    margin-top: 5px;
+    padding: 2px 5px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
