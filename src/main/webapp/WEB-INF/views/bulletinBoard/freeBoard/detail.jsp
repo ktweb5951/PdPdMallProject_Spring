@@ -16,9 +16,6 @@
 		<link rel="stylesheet" href="../../resources/css/reset.css">
 	<title>자유게시판 게시물</title>
 	</head>
-	<scipt>
-	
-	</scipt>
 	<body>
 		<div id="container">
 			<header>
@@ -83,6 +80,7 @@
 					</table>
 				</form>
 	<!-- 			댓글등록 -->
+	
 				<table id="reply-table">
 					<colgroup>
 						<col width=10% />
@@ -94,6 +92,7 @@
 						<th>작성자</th>
 						<th>댓글내용</th>
 						<th>작성시간</th>
+						<th></th>
 					</tr>
 					<c:forEach var="reply" items="${rList }">
 					<tr>
@@ -110,9 +109,14 @@
 						</td>
 						</c:if>
 					</tr>
-					<tr id="replyModifyForm" style="display:none">
-							<td colspan="3"><input id="replyContent" type="text" size="50" name="replyContent" value="${reply.replyContent }"></td>
-							<td><input type="button" value="완료" onclick="replyModify(this, '${reply.replyNo}', '${reply.refBoardNo }');"></td>					
+					<tr style="display:none;">
+							<td colspan="3">
+								<input id="replyContent" type="text" size="50" name="replyContent" value="${reply.replyContent }">
+							</td>
+							<td>
+								<input type="button" value="완료" onclick="replyModify(this, '${reply.replyNo}', '${reply.refBoardNo }');">
+							</td>	
+										
 					</tr>
 					</c:forEach>
 				</table>
@@ -137,9 +141,19 @@
 				}
 			}
 	
-			function showModifyForm(obj){
-				obj.parentElement.parentElement.nextElementSibling.style.display="";
+			function showModifyForm(obj) {
+// 			    const parentRow = obj.closest("tr"); // 해당 수정 버튼의 부모 <tr> 요소를 찾음
+// 			    const replyModifyForm = parentRow.nextElementSibling; // 수정 폼을 나타내는 <tr> 요소
+
+				 const replyModifyForm = obj.parentElement.parentElement.nextElementSibling;
+			    // 활성화 여부에 따라 스타일을 토글하고 싶다면
+			    if (replyModifyForm.style.display === "none") {
+			        replyModifyForm.style.display = "block";
+			    } else {
+			        replyModifyForm.style.display = "none";
+			    }
 			}
+
 			
 			function replyModify(obj,replyNo, refBoardNo){
 				const form = document.createElement("form");
